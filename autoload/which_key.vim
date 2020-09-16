@@ -60,7 +60,7 @@ function! which_key#start(vis, bang, prefix) " {{{
   endif
 
   let key = a:prefix
-  let s:which_key_trigger = key ==# ' ' ? '<space>' : key
+  let s:which_key_trigger = key ==# ' ' ? 'SPC' : key
 
   if !has_key(s:cache, key) || g:which_key_run_map_on_popup
     " First run
