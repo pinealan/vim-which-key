@@ -93,7 +93,7 @@ function! which_key#start(vis, bang, prefix) " {{{
 
   let s:last_runtime_stack = [copy(s:runtime)]
   call which_key#window#show(s:runtime)
-endfunction
+endfunction " }}}
 
 function! s:create_runtime(key)
   let key = a:key
@@ -151,7 +151,7 @@ function! s:merge(target, native) " {{{
   endif
 
   call extend(target, native, 'keep')
-endfunction
+endfunction " }}}
 
 function! s:echo_prompt() abort
   echohl Keyword
@@ -175,7 +175,7 @@ function! s:has_children(input) abort
   return len(filter(group, 'v:val == 1')) > 1
 endfunction
 
-function! s:show_upper_level_mappings() abort
+function! s:show_upper_level_mappings() abort " {{{
   " Top level
   if empty(s:last_runtime_stack)
     call which_key#window#show(s:runtime)
@@ -192,7 +192,7 @@ function! s:show_upper_level_mappings() abort
   unlet s:last_runtime_stack[-1]
 
   call which_key#window#show(last_runtime)
-endfunction
+endfunction " }}}
 
 function! s:getchar() abort
   let input = ''
@@ -255,7 +255,7 @@ function! which_key#wait_for_input() " {{{
   let s:cur_char = char
 
   call s:handle_input(get(s:runtime, char))
-endfunction
+endfunction " }}}
 
 function! s:show_next_level_mappings(next_runtime) abort
   let s:which_key_trigger .= ' '. (s:cur_char ==# ' ' ? '<space>' : s:cur_char)
@@ -289,7 +289,7 @@ function! s:handle_input(input) " {{{
       call which_key#error#undefined_key(s:which_key_trigger)
     endif
   endif
-endfunction
+endfunction " }}}
 
 function! s:execute_native_fallback() abort
   let l:reg = s:get_register()

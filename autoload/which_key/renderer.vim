@@ -80,7 +80,7 @@ function! s:calc_layout(mappings) abort " {{{
   return layout
 endfunction " }}}
 
-function! s:create_rows(layout, mappings) abort
+function! s:create_rows(layout, mappings) abort " {{{
   let l = a:layout
   let mappings = a:mappings
 
@@ -107,6 +107,7 @@ function! s:create_rows(layout, mappings) abort
   endif
 
   for k in smap
+    " {{{
     let key = get(displaynames, toupper(k), k)
     let desc = type(mappings[k]) == s:TYPE.dict ? get(mappings[k], 'name', '') : mappings[k][1]
     if desc ==# 'which_key_ignore'
@@ -150,6 +151,8 @@ function! s:create_rows(layout, mappings) abort
     endif
     " This would cause bugs when using vim popup
     "silent execute "cnoremap <nowait> <buffer> ".substitute(k, "|", "<Bar>", ""). " " . s:escape_keys(k) ."<CR>"
+
+    " }}}
   endfor
 
   call map(rows, 'join(v:val, "")')
